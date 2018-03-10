@@ -1,0 +1,5 @@
+winata,5
+hendra,4
+josh,3
+tanu,2
+-,0

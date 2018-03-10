@@ -1,0 +1,122 @@
+0. Roti atas
+1. Acar
+2. Bawang
+3. Daging
+4. Ham
+5. Keju
+6. Paprika
+7. tomat
+8. Roti Bawah
+9. Telur
+
+
+Level 1 (5 tumpukan)
+Resep 1 : roti bawah, daging, telur, acar, roti atas
+Resep 2 : roti bawah, ham, tomat, paprika, roti atas
+Resep 3 : roti bawah, daging, keju, bawang, roti atas
+Resep 4 : roti bawah, ham, acar , keju, roti atas
+
+
+LVL1 
+1. 8, 3, 9, 1, 0
+2. 8, 4, 7, 6, 0
+3. 8, 3, 5, 2, 0
+4. 8, 4, 1, 5, 0
+
+
+Level 2 (8 tumpukan)
+Resep 1 : roti bawah, ham, acar, daging, keju, ham, bawang, roti atas
+Resep 2 : roti bawah, daging, paprika, ham, telur, tomat, acar, roti atas
+Resep 3 : roti bawah, ham, telur, acar, keju, paprika, telur, roti atas
+Resep 4 : roti bawah, paprika, tomat, telur, daging, bawang, paprika, roti atas
+Resep 5 : roti bawah, daging, paprika, daging, acar, keju, acar, roti atas
+
+
+LVL2
+1. 8, 4, 1, 3, 5, 4, 2, 0
+2. 8, 3, 6, 4, 9, 7, 1, 0
+3. 8, 4, 9, 1, 5, 6, 9, 0
+4. 8, 6, 7, 9, 3, 2, 6, 0
+5. 8, 3, 6, 3, 1, 5, 1, 0
+ 
+
+Level 3 (10 tumpukan)
+Resep 1 : roti bawah, keju, acar, ham, bawang, paprika, telur, tomat, acar, roti atas
+Resep 2 : roti bawah, ham, telur, acar, paprika, telur, daging, bawang, tomat, roti atas
+Resep 3 : roti bawah, bawang, telur, daging, paprika, keju, ham, tomat, acar, roti atas
+Resep 4 : roti bawah, telur, paprika, daging, acar, keju, ham, bawang, daging, roti atas
+Resep 5 : roti bawah, daging, bawang, keju, tomat, acar, paprika, telur, keju, roti atas
+Resep 6 : roti bawah, tomat, keju, paprika, ham, telur, bawang, daging, acar, roti atas
+
+LVL3
+1. 8, 5, 1, 4, 2, 6, 9, 7, 1, 0
+2. 8, 4, 9, 1, 6, 9, 3, 2, 7, 0
+3. 8, 2, 9, 3, 6, 5, 4, 7, 1, 0
+4. 8, 9, 6, 3, 1, 5, 4, 2, 3, 0
+5. 8, 3, 2, 5, 7, 1, 6, 9, 5, 0
+6. 8, 7, 5, 6, 4, 9, 2, 3, 1, 0
+
+
+  if (raindrop.overlaps(ceking)) {
+                ceking.y += 35;
+                dropSound.play();
+                ydidapat += 35;
+                raindrop.setY(ydidapat);
+                didapat.add(raindrop);
+                if(raindrop.getJenis() == 0){
+                    if(ngecek(recipe, didapat)){
+                        score+=250;
+                    }
+                    recipe++;
+                    System.out.println(recipe);
+                    didapat.clear();
+                    ceking.x = bucket.x;
+                    ceking.y = bucket.y;
+                    ydidapat = 80;
+                }
+                iter.remove();
+            }
+        }
+
+
+
+ public boolean ngecek(int resep, ArrayList<Crectangle> jawaban) {
+        int[][] multi = new int[][]{
+            {8, 3, 9, 1, 0},
+            {8, 4, 7, 6, 0},
+            {8, 3, 5, 2, 0},
+            {8, 4, 1, 5, 0},};
+        if(jawaban.size()!=5){
+            return false;
+        }
+        else if (resep == 0) {
+           for(int f = 0; f<5; f++){
+               if(multi[0][f] != jawaban.get(f).getJenis())
+                   return false;
+           }
+           return true;
+        } else if (resep == 1) {
+            for(int f = 0; f<5; f++){
+               if(multi[1][f] != jawaban.get(f).getJenis())
+                   return false;
+           }
+           return true;
+
+        } else if (resep == 2) {
+            for(int f = 0; f<5; f++){
+               if(multi[2][f] != jawaban.get(f).getJenis())
+                   return false;
+           }
+           return true;
+
+        } else if (resep == 3) {
+            for(int f = 0; f<5; f++){
+               if(multi[3][f] != jawaban.get(f).getJenis())
+                   return false;
+           }
+           return true;
+
+        }
+        return false;
+
+    }
